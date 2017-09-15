@@ -395,7 +395,7 @@
      </font>
     </property>
     <property name="text">
-     <string>S, m/V</string>
+     <string>S, m^2</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="teS">

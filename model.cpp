@@ -9,7 +9,7 @@ Model::Model(QObject *parent) :
     mLifeTimer->setInterval(mLifeTimerTimeout);
     connect(mLifeTimer, SIGNAL(timeout()), this, SLOT(lifeTimerWork()));
 
-    mPumpTimer->setInterval(10000);
+    mPumpTimer->setInterval(1000);
     connect(mPumpTimer, SIGNAL(timeout()), this, SLOT(pumpTimerWork()));
 }
 

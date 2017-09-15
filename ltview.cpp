@@ -43,11 +43,12 @@ void LTView::updateView(){
     scene->addLine(botT, 0, botT, height, penBlack);
     scene->addLine(topT, 0, topT, height, penBlack);
 
-    int pointS = 10;
+    int pointS = 8;
     int pointX = ratioT * mTemp - pointS / 2;
     int pointY = ratioL * (maxH - mLevel) - pointS / 2;
-    scene->addEllipse(pointX, pointY, pointS, pointS, penRed, brushRed);
-    //ellipse->setPos(pointX, pointY);
+
+    QGraphicsEllipseItem* ellipse = scene->addEllipse(pointS, pointS, pointS, pointS, penBlack, brushRed);
+    ellipse->setPos(pointX-pointS, pointY-pointS);
 }
 
 void LTView::setLH(double level){ mLH = level; }

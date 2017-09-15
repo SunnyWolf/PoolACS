@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->bStop->setEnabled(false);
 
+    /* Установка фонового изображения */
     QPixmap pmap ("background.png");
     ui->lBackground->setPixmap(pmap);
     ui->ltViewLayout->addWidget(ltView);
@@ -19,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->bStop,  SIGNAL(released()), this,  SLOT(bStopHandler()));
     connect(this, SIGNAL(startSimulation()), model, SLOT(start()));
     connect(this, SIGNAL(stopSimulation()),  model, SLOT(stop()));
-
     connect(model, SIGNAL(update()), this, SLOT(updateDataOnUI()));
 }
 
@@ -28,37 +28,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/* Обработчик нажатия кнопки Start */
 void MainWindow::bStartHandler(){
     ui->bStart->setEnabled(false);
     ui->bStop->setEnabled(true);
 
+    initLTView();
     uploadDataToModel();
 
     emit startSimulation();
 }
+/* Обработчик нажатия кнопки Stop */
 void MainWindow::bStopHandler(){
     ui->bStart->setEnabled(true);
     ui->bStop->setEnabled(false);
 
     emit stopSimulation();
 }
-
+/* Инициализация модели */
 void MainWindow::uploadDataToModel(){
     double temp;
     temp = ui->teLH->text().toDouble();
     model->setLH(temp);
-    ltView->setLH(temp);
     temp = ui->teLL->text().toDouble();
     model->setLL(temp);
-    ltView->setLL(temp);
     temp = ui->teLevel->text().toDouble();
     model->setLevel(temp);
     temp = ui->teTH->text().toDouble();
     model->setTH(temp);
-    ltView->setTH(temp);
     temp = ui->teTL->text().toDouble();
     model->setTL(temp);
-    ltView->setTL(temp);
     temp = ui->teTemp->text().toDouble();
     model->setTemp(temp);
     temp = ui->teTin->text().toDouble();
@@ -75,10 +74,9 @@ void MainWindow::uploadDataToModel(){
     model->setQ(temp);
     temp = ui->teK->text().toDouble();
     model->setK(temp);
-
-    ltView->updateView();
 }
 
+/* Отображение данных модели на экране */
 void MainWindow::updateDataOnUI(){
     double temp, level, lh;
     bool state;
@@ -91,7 +89,9 @@ void MainWindow::updateDataOnUI(){
     temp = model->getTemp();
     ui->teTemp->setText(QString::number(temp));
 
+    // Установка точки на графике
     ltView->setCursor(temp, level);
+    // Перерисовка
     ltView->updateView();
 
     state = model->getU1();
@@ -100,6 +100,15 @@ void MainWindow::updateDataOnUI(){
     ui->cbPump2->setChecked(state);
 }
 
+/* Инициализания LTView */
 void MainWindow::initLTView(){
     double temp;
+    temp = ui->teLH->text().toDouble();
+    ltView->setLH(temp);
+    temp = ui->teLL->text().toDouble();
+    ltView->setLL(temp);
+    temp = ui->teTH->text().toDouble();
+    ltView->setTH(temp);
+    temp = ui->teTL->text().toDouble();
+    ltView->setTL(temp);
 }

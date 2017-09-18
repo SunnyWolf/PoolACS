@@ -9,6 +9,7 @@
 #include <QProgressBar>
 #include <QCheckBox>
 #include <QVBoxLayout>
+#include <QTableWidget>
 #include "model.h"
 #include "ltview.h"
 

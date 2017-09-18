@@ -3,13 +3,15 @@
 Model::Model(QObject *parent) :
     QObject(parent),
     mLifeTimer(new QTimer),
-    mPumpTimer(new QTimer)
+    mPumpTimer(new QTimer),
+    mLevelAccuracy(1),
+    mTempAccuracy(2)
 {
     mLifeTimerTimeout = 300;
     mLifeTimer->setInterval(mLifeTimerTimeout);
     connect(mLifeTimer, SIGNAL(timeout()), this, SLOT(lifeTimerWork()));
 
-    mPumpTimer->setInterval(1000);
+    mPumpTimer->setInterval(5000);
     connect(mPumpTimer, SIGNAL(timeout()), this, SLOT(pumpTimerWork()));
 }
 
@@ -126,7 +128,7 @@ void Model::setR(double r)        { mR = r;          }
 void Model::setQ(double q)        { mQ = q;          }
 void Model::setK(double k)        { mK = k;          }
 
-double Model::getLevel(){ return mLevel; }
-double Model::getTemp(){  return mTemp;  }
+double Model::getLevel(){ return (double)((int)(mLevel * pow(10, mLevelAccuracy)+0.5)/pow(10, mLevelAccuracy)); }
+double Model::getTemp(){  return (double)((int)(mTemp * pow(10,mTempAccuracy)+0.5)/pow(10, mTempAccuracy)); }
 bool Model::getU1(){      return (bool)(u1); }
 bool Model::getU2(){      return (bool)(u2); }

@@ -35,4 +35,4 @@ HEADERS += \
     model.h
 
 FORMS += \
-        mainwindow.ui
+    mainwindow_v2.ui

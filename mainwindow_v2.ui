@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>11</y>
+      <width>271</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>LH, м</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>LL, м</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Level, м</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>TH, C</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>TL, C°</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Tin, C°</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Tout, C°</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Temp, C°</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>S, м^2</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>c, Дж/К</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>p, кг/м^3</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>K</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Q, м^3/c</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Значение</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Описание</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>5</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>Верхний уровень жидкости</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>4.5</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>Нижний уровень жидкости</string>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>Уровень жидкости</string>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>30</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="3" column="1">
+     <property name="text">
+      <string>Верхний предел температуры</string>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>25</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="1">
+     <property name="text">
+      <string>Нижний предел температуры</string>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>50</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="5" column="1">
+     <property name="text">
+      <string>Температура жидкости на входе</string>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string>10</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="6" column="1">
+     <property name="text">
+      <string>Температура внешней среды</string>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string>10</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="7" column="1">
+     <property name="text">
+      <string>Текущая температура жидкости</string>
+     </property>
+    </item>
+    <item row="8" column="0">
+     <property name="text">
+      <string>20</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="8" column="1">
+     <property name="text">
+      <string>Площадь бассейна</string>
+     </property>
+    </item>
+    <item row="9" column="0">
+     <property name="text">
+      <string>4180</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="9" column="1">
+     <property name="text">
+      <string>Теплоемкость жидкости</string>
+     </property>
+    </item>
+    <item row="10" column="0">
+     <property name="text">
+      <string>998.2</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="10" column="1">
+     <property name="text">
+      <string>Плотность жидкости</string>
+     </property>
+    </item>
+    <item row="11" column="0">
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="11" column="1">
+     <property name="text">
+      <string>Коэфициент остывания</string>
+     </property>
+    </item>
+    <item row="12" column="0">
+     <property name="text">
+      <string>10</string>
+     </property>
+    </item>
+    <item row="12" column="1">
+     <property name="text">
+      <string>Производительность насосов</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="bStop">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bStart">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pbPool">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>60</y>
+      <width>251</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <property name="format">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>230</y>
+      <width>331</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="ltViewLayout"/>
+   </widget>
+   <widget class="QCheckBox" name="cbPump2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>110</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Работа</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbPump1">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>110</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Работа</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lBackground">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>491</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>background.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>lBackground</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>bStop</zorder>
+   <zorder>bStart</zorder>
+   <zorder>pbPool</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>cbPump2</zorder>
+   <zorder>cbPump1</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

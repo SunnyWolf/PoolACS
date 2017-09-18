@@ -49,6 +49,9 @@ private:
     int u1, u2;
     int zone;
 
+    double mLevelAccuracy;
+    double mTempAccuracy;
+
 
     QTimer *mLifeTimer;
     QTimer *mPumpTimer;

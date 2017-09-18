@@ -1,5 +1,6 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+
+#include "ui_mainwindow_v2.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -48,32 +49,32 @@ void MainWindow::bStopHandler(){
 /* Инициализация модели */
 void MainWindow::uploadDataToModel(){
     double temp;
-    temp = ui->teLH->text().toDouble();
+    temp = ui->tableWidget->item(0,0)->text().toDouble();
     model->setLH(temp);
-    temp = ui->teLL->text().toDouble();
+    temp = ui->tableWidget->item(1,0)->text().toDouble();
     model->setLL(temp);
-    temp = ui->teLevel->text().toDouble();
+    temp = ui->tableWidget->item(2,0)->text().toDouble();
     model->setLevel(temp);
-    temp = ui->teTH->text().toDouble();
+    temp = ui->tableWidget->item(3,0)->text().toDouble();
     model->setTH(temp);
-    temp = ui->teTL->text().toDouble();
+    temp = ui->tableWidget->item(4,0)->text().toDouble();
     model->setTL(temp);
-    temp = ui->teTemp->text().toDouble();
-    model->setTemp(temp);
-    temp = ui->teTin->text().toDouble();
+    temp = ui->tableWidget->item(5,0)->text().toDouble();
     model->setTin(temp);
-    temp = ui->teTout->text().toDouble();
+    temp = ui->tableWidget->item(6,0)->text().toDouble();
     model->setTout(temp);
-    temp = ui->teTout->text().toDouble();
-    model->setTH(temp);
-    temp = ui->teC->text().toDouble();
-    model->setC(temp);
-    temp = ui->teS->text().toDouble();
+    temp = ui->tableWidget->item(7,0)->text().toDouble();
+    model->setTemp(temp);
+    temp = ui->tableWidget->item(8,0)->text().toDouble();
     model->setS(temp);
-    temp = ui->teQ->text().toDouble();
-    model->setQ(temp);
-    temp = ui->teK->text().toDouble();
+    temp = ui->tableWidget->item(9,0)->text().toDouble();
+    model->setC(temp);
+    temp = ui->tableWidget->item(10,0)->text().toDouble();
+    model->setR(temp);
+    temp = ui->tableWidget->item(11,0)->text().toDouble();
     model->setK(temp);
+    temp = ui->tableWidget->item(12,0)->text().toDouble();
+    model->setQ(temp);
 }
 
 /* Отображение данных модели на экране */
@@ -82,12 +83,13 @@ void MainWindow::updateDataOnUI(){
     bool state;
 
     level = model->getLevel();
-    lh = ui->teLH->text().toDouble();
-    ui->teLevel->setText(QString::number(level));
-    ui->pbPool->setValue(level / lh * 100);
-
     temp = model->getTemp();
-    ui->teTemp->setText(QString::number(temp));
+
+    lh = ui->tableWidget->item(0,0)->text().toDouble();
+    ui->tableWidget->item(2,0)->setText(QString::number(level));
+    ui->tableWidget->item(7,0)->setText(QString::number(temp));
+
+    ui->pbPool->setValue(level / lh * 100);
 
     // Установка точки на графике
     ltView->setCursor(temp, level);
@@ -103,12 +105,12 @@ void MainWindow::updateDataOnUI(){
 /* Инициализания LTView */
 void MainWindow::initLTView(){
     double temp;
-    temp = ui->teLH->text().toDouble();
+    temp = ui->tableWidget->item(0,0)->text().toDouble();
     ltView->setLH(temp);
-    temp = ui->teLL->text().toDouble();
+    temp = ui->tableWidget->item(1,0)->text().toDouble();
     ltView->setLL(temp);
-    temp = ui->teTH->text().toDouble();
+    temp = ui->tableWidget->item(3,0)->text().toDouble();
     ltView->setTH(temp);
-    temp = ui->teTL->text().toDouble();
+    temp = ui->tableWidget->item(4,0)->text().toDouble();
     ltView->setTL(temp);
 }

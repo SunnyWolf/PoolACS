@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
+#include <QGraphicsItemGroup>
 #include <QWidget>
 #include <QBrush>
 
@@ -15,6 +16,7 @@ public:
     explicit LTView(QWidget *parent = nullptr);
     ~LTView();
 
+    void applySettings(QMap<QString, double> &params);
     void setLH(double level);
     void setLL(double level);
     void setTH(double level);
@@ -27,9 +29,16 @@ public slots:
     void updateView();
 
 private:
-    double mLL, mLH, mTL, mTH, mLevel, mTemp;
+    void drawHistory();
+    void deleteItemsFromGroup(QGraphicsItemGroup *group);
+
+    double mLL, mLH, mTL, mTH;
+    double mLevel, mTemp, mLevelOld, mTempOld;
 
     QGraphicsScene *scene;
+    QGraphicsItemGroup *group1;
+    QGraphicsItemGroup *group2;
+
     QPen penBlack;
     QPen penRed;
     QBrush brushRed;

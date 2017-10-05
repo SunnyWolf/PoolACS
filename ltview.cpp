@@ -1,6 +1,8 @@
 #include "ltview.h"
 
-LTView::LTView(QWidget *parent) :
+LTView::LTView(QWidget *parent) : QGraphicsView(parent),
+    group1(new QGraphicsItemGroup),
+    group2(new QGraphicsItemGroup),
     scene(new QGraphicsScene),
     penBlack(Qt::black),
     penRed(Qt::red),
@@ -15,6 +17,11 @@ LTView::LTView(QWidget *parent) :
     this->setMinimumWidth(100);
 
     this->setScene(scene);
+
+    penRed.setWidth(1);
+
+    scene->addItem(group1);
+    scene->addItem(group2);
 }
 
 LTView::~LTView(){
@@ -22,7 +29,6 @@ LTView::~LTView(){
 }
 
 void LTView::updateView(){
-    scene->clear();
 
     int width = this->width();
     int height = this->height();
@@ -44,11 +50,45 @@ void LTView::updateView(){
     scene->addLine(topT, 0, topT, height, penBlack);
 
     int pointS = 8;
-    int pointX = ratioT * mTemp - pointS / 2;
-    int pointY = ratioL * (maxH - mLevel) - pointS / 2;
+    int pointX = ratioT * mTemp;
+    int pointY = ratioL * (maxH - mLevel);
+    int pointXold = ratioT * mTempOld;
+    int pointYold = ratioL * (maxH - mLevelOld);
 
-    QGraphicsEllipseItem* ellipse = scene->addEllipse(pointS, pointS, pointS, pointS, penBlack, brushRed);
-    ellipse->setPos(pointX-pointS, pointY-pointS);
+    QGraphicsEllipseItem* ellipse = scene->addEllipse(0, 0, pointS, pointS, penBlack, brushRed);
+    ellipse->setPos(pointX-pointS/2, pointY-pointS/2);
+
+    deleteItemsFromGroup(group1);
+    group1->addToGroup(ellipse);
+
+    if (pointX != pointXold || pointY != pointYold){
+        QGraphicsLineItem *line = scene->addLine(pointXold, pointYold, pointX, pointY, penRed);
+        group2->addToGroup(line);
+
+        mTempOld = mTemp;
+        mLevelOld = mLevel;
+    }
+}
+
+void LTView::deleteItemsFromGroup(QGraphicsItemGroup *group){
+    foreach (QGraphicsItem *item, scene->items(group->boundingRect())) {
+        if (item->group() == group){
+            delete item;
+        }
+    }
+}
+
+void LTView::applySettings(QMap<QString, double> &params){
+    if (params.isEmpty()) return;
+
+    mLH = params.value("LH");
+    mLL = params.value("LL");
+    mLevel = params.value("Level");
+    mLevelOld = mLevel;
+    mTH = params.value("TH");
+    mTL = params.value("TL");
+    mTemp = params.value("Temp");
+    mTempOld = mTemp;
 }
 
 void LTView::setLH(double level){ mLH = level; }

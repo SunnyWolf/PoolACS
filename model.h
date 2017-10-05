@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QMap>
 #include <qmath.h>
 
 class Model : public QObject
@@ -10,6 +11,8 @@ class Model : public QObject
     Q_OBJECT
 public:
     explicit Model(QObject *parent = nullptr);
+
+    void applySettings(QMap<QString, double> &params);
 
     void setLH(double level);
     void setLL(double level);
@@ -25,7 +28,9 @@ public:
     void setQ(double q);
     void setK(double k);
     double getLevel();
+    double getLevelFromSensor();
     double getTemp();
+    double getTempFromSensor();
     bool getU1();
     bool getU2();
 
@@ -36,11 +41,9 @@ private:
     void calcTemp();
 
     /* Уровни бассейна */
-    double mLH, mLL;
-    double mLevel;
+    double mLH, mLL, mLevel, mdL;
     /* Температура жидкости в бассейне */
-    double mTH, mTL;
-    double mTemp;
+    double mTH, mTL, mTemp, mdT;
     /* Тепрература входящей жидкости и температура внешней среды */
     double mTin, mTout;
     /* Коэфициенты */
@@ -48,9 +51,6 @@ private:
     /* Управление */
     int u1, u2;
     int zone;
-
-    double mLevelAccuracy;
-    double mTempAccuracy;
 
 
     QTimer *mLifeTimer;

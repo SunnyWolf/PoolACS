@@ -34,7 +34,6 @@ void MainWindow::bStartHandler(){
     ui->bStart->setEnabled(false);
     ui->bStop->setEnabled(true);
 
-    initLTView();
     uploadDataToModel();
 
     emit startSimulation();
@@ -49,41 +48,56 @@ void MainWindow::bStopHandler(){
 /* Инициализация модели */
 void MainWindow::uploadDataToModel(){
     double temp;
+    QMap<QString, double> params;
+
     temp = ui->tableWidget->item(0,0)->text().toDouble();
-    model->setLH(temp);
+    params.insert("LH", temp);
     temp = ui->tableWidget->item(1,0)->text().toDouble();
-    model->setLL(temp);
+    params.insert("LL", temp);
     temp = ui->tableWidget->item(2,0)->text().toDouble();
-    model->setLevel(temp);
+    params.insert("Level", temp);
     temp = ui->tableWidget->item(3,0)->text().toDouble();
-    model->setTH(temp);
+    params.insert("TH", temp);
     temp = ui->tableWidget->item(4,0)->text().toDouble();
-    model->setTL(temp);
+    params.insert("TL", temp);
     temp = ui->tableWidget->item(5,0)->text().toDouble();
-    model->setTin(temp);
+    params.insert("Tin", temp);
     temp = ui->tableWidget->item(6,0)->text().toDouble();
-    model->setTout(temp);
+    params.insert("Tout", temp);
     temp = ui->tableWidget->item(7,0)->text().toDouble();
-    model->setTemp(temp);
+    params.insert("Temp", temp);
     temp = ui->tableWidget->item(8,0)->text().toDouble();
-    model->setS(temp);
+    params.insert("S", temp);
     temp = ui->tableWidget->item(9,0)->text().toDouble();
-    model->setC(temp);
+    params.insert("C", temp);
     temp = ui->tableWidget->item(10,0)->text().toDouble();
-    model->setR(temp);
+    params.insert("R", temp);
     temp = ui->tableWidget->item(11,0)->text().toDouble();
-    model->setK(temp);
+    params.insert("K", temp);
     temp = ui->tableWidget->item(12,0)->text().toDouble();
-    model->setQ(temp);
+    params.insert("Q", temp);
+    temp = ui->tableWidget->item(13,0)->text().toDouble();
+    params.insert("dT", temp);
+    temp = ui->tableWidget->item(14,0)->text().toDouble();
+    params.insert("dTgist", temp);
+    temp = ui->tableWidget->item(15,0)->text().toDouble();
+    params.insert("dL", temp);
+    temp = ui->tableWidget->item(16,0)->text().toDouble();
+    params.insert("dLgist", temp);
+
+    model->applySettings(params);
+    ltView->applySettings(params);
 }
 
 /* Отображение данных модели на экране */
 void MainWindow::updateDataOnUI(){
-    double temp, level, lh;
+    double temp, level, slevel, stemp, lh;
     bool state;
 
     level = model->getLevel();
     temp = model->getTemp();
+    slevel = model->getLevelFromSensor();
+    stemp = model->getTempFromSensor();
 
     lh = ui->tableWidget->item(0,0)->text().toDouble();
     ui->tableWidget->item(2,0)->setText(QString::number(level));
@@ -92,7 +106,7 @@ void MainWindow::updateDataOnUI(){
     ui->pbPool->setValue(level / lh * 100);
 
     // Установка точки на графике
-    ltView->setCursor(temp, level);
+    ltView->setCursor(stemp, slevel);
     // Перерисовка
     ltView->updateView();
 
@@ -100,17 +114,4 @@ void MainWindow::updateDataOnUI(){
     ui->cbPump1->setChecked(state);
     state = model->getU2();
     ui->cbPump2->setChecked(state);
-}
-
-/* Инициализания LTView */
-void MainWindow::initLTView(){
-    double temp;
-    temp = ui->tableWidget->item(0,0)->text().toDouble();
-    ltView->setLH(temp);
-    temp = ui->tableWidget->item(1,0)->text().toDouble();
-    ltView->setLL(temp);
-    temp = ui->tableWidget->item(3,0)->text().toDouble();
-    ltView->setTH(temp);
-    temp = ui->tableWidget->item(4,0)->text().toDouble();
-    ltView->setTL(temp);
 }

@@ -90,17 +90,15 @@ void Model::selectU1U2(){
         break;
     case 9:
         // Если вошли в зону при u1=1, u2=0 или наоборот
-        if (u1 != u2){
-            if (mLevel > (mLH - msL)){
-                u1 = 0;
-                u2 = 1;
-            } else if (mLevel < (mLL + msL)){
-                u1 = 1;
-                u2 = 0;
-            } else {
-                u1 = 0;
-                u2 = 0;
-            }
+        if (mLevel > (mLH - msL)){
+            u1 = 0;
+            u2 = 1;
+        } else if (mLevel < (mLL + msL)){
+            u1 = 1;
+            u2 = 0;
+        } else if (u1 != u2){
+            u1 = 0;
+            u2 = 0;
         }
         // Алгоритм регулировки температуры
         if ((u1 & u2) && (mTemp > (mTH - msT)) ){

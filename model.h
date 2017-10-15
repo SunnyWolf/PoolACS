@@ -33,6 +33,9 @@ public:
     double getTempFromSensor();
     bool getU1();
     bool getU2();
+    void setU1(bool state);
+    void setU2(bool state);
+    void setManualU(bool state);
 
 
 private:
@@ -41,21 +44,25 @@ private:
     void calcTemp();
 
     /* Уровни бассейна */
-    double mLH, mLL, mLevel, mdL;
+    double mLH, mLL, mLevel, mdL, msL;
     /* Температура жидкости в бассейне */
-    double mTH, mTL, mTemp, mdT;
+    double mTH, mTL, mTemp, mdT, msT;
     /* Тепрература входящей жидкости и температура внешней среды */
     double mTin, mTout;
     /* Коэфициенты */
     double mC, mS, mQ, mK, mR;
     /* Управление */
     int u1, u2;
+    int u1old, u2old;
     int zone;
 
 
     QTimer *mLifeTimer;
     QTimer *mPumpTimer;
     int mLifeTimerTimeout;
+    int mPumpTimerTimeout;
+
+    bool isManualU = false;
 
 signals:
     void update();

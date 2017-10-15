@@ -38,6 +38,10 @@ signals:
     void stopSimulation();
 
 private slots:
+    void cbManualU(bool state);
+    void cbU1(bool state);
+    void cbU2(bool state);
+
     void bStartHandler();
     void bStopHandler();
 

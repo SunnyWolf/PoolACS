@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(startSimulation()), model, SLOT(start()));
     connect(this, SIGNAL(stopSimulation()),  model, SLOT(stop()));
     connect(model, SIGNAL(update()), this, SLOT(updateDataOnUI()));
+
+    connect(ui->cbManualU, SIGNAL(clicked(bool)), this, SLOT(cbManualU(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +47,27 @@ void MainWindow::bStopHandler(){
 
     emit stopSimulation();
 }
+/* Обработчик для кнопки ручного управления насосами */
+void MainWindow::cbManualU(bool state){
+    if (state){
+        model->setManualU(state);
+
+        connect(ui->cbPump1, SIGNAL(clicked(bool)), this, SLOT(cbU1(bool)));
+        connect(ui->cbPump2, SIGNAL(clicked(bool)), this, SLOT(cbU2(bool)));
+    } else {
+        model->setManualU(state);
+
+        disconnect(ui->cbPump1, SIGNAL(clicked(bool)), this, NULL);
+        disconnect(ui->cbPump2, SIGNAL(clicked(bool)), this, NULL);
+    }
+}
+void MainWindow::cbU1(bool state){
+    model->setU1(state);
+}
+void MainWindow::cbU2(bool state){
+    model->setU2(state);
+}
+
 /* Инициализация модели */
 void MainWindow::uploadDataToModel(){
     double temp;
@@ -77,13 +100,21 @@ void MainWindow::uploadDataToModel(){
     temp = ui->tableWidget->item(12,0)->text().toDouble();
     params.insert("Q", temp);
     temp = ui->tableWidget->item(13,0)->text().toDouble();
-    params.insert("dT", temp);
+    params.insert("sT", temp);
     temp = ui->tableWidget->item(14,0)->text().toDouble();
-    params.insert("dTgist", temp);
+    params.insert("dT", temp);
     temp = ui->tableWidget->item(15,0)->text().toDouble();
-    params.insert("dL", temp);
+    params.insert("dTgist", temp);
     temp = ui->tableWidget->item(16,0)->text().toDouble();
+    params.insert("sL", temp);
+    temp = ui->tableWidget->item(17,0)->text().toDouble();
+    params.insert("dL", temp);
+    temp = ui->tableWidget->item(18,0)->text().toDouble();
     params.insert("dLgist", temp);
+    temp = ui->tableWidget->item(19,0)->text().toDouble();
+    params.insert("tMod", temp);
+    temp = ui->tableWidget->item(20,0)->text().toDouble();
+    params.insert("tReg", temp);
 
     model->applySettings(params);
     ltView->applySettings(params);
